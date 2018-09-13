@@ -1,13 +1,16 @@
 import React from 'react';
-import { StyleSheet, Text, View } from 'react-native';
+import { StyleSheet, View, Button, TextInput, FlatList, Text } from 'react-native'
+import { getFilmsFromApiWithSearchedText } from './API/TMDBAApi'
 
 export default class App extends React.Component {
+  _loadFilms() {
+    getFilmsFromApiWithSearchedText("star").then(data => console.log(data.results))
+  }
+
   render() {
     return (
       <View style={styles.container}>
-        <Text>Open up App.js to start working on your app!</Text>
-        <Text>Changes you make will automatically reload.</Text>
-        <Text>Shake your phone to open the developer menu.</Text>
+         <Button style={{ height: 50 }} title="Rechercher" onPress={() => this._loadFilms()} />
       </View>
     );
   }
